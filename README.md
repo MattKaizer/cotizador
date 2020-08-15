@@ -1,3 +1,23 @@
+# App cotizador de seguros
+[link-netlify-preview](https://gracious-jennings-14385b.netlify.app)
+
+### Simple React App
+
+## Task Description
+
+Simple app build with reactJS, working with hooks. Th
+
+#### Enum Tech used
+
+* HTML5
+* CSS3
+* JS
+* ReacJS
+* Bulma
+* ShortId
+
+<hr>
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
