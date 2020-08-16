@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useState } from "react";
 import styled from "@emotion/styled";
 
 //Styled components
@@ -34,6 +34,7 @@ const Button = styled.button`
     font-weight: bold;
     border: none;
     transition: 3s ease;
+    margin-top: 2rem;
 
     &:hover {
       cursor: pointer;
@@ -41,13 +42,61 @@ const Button = styled.button`
     }
 `;
 
+const Error = styled.div`
+  background-color: red;
+  color: white;
+  padding: 1rem;
+  width: 100%;
+  text-align: center;
+  margin-bottom: 1rem;
+`;
+
 const Formluario = () => {
+//states
+const [datos, setDatos] = useState({
+  marca: '',
+  year: '',
+  plan: ''
+})
+
+//Error ctrl
+const [error, setError] = useState(false)
+
+//extraer valores
+const { marca, year, plan } = datos;
+
+//leer datos del form y se guardan en el state
+const obtenerInfo = e => {
+  setDatos({
+    ...datos,
+    [e.target.name] : e.target.value
+  })
+}
+
+//al submit
+const cotizarSeguro = e => {
+  e.preventDefault();
+
+  if (marca.trim() === '' || year.trim() === '' || plan.trim() === '') {
+     setError(true)
+     return
+  }
+  setError(false)
+}
+
   return (
     <Fragment>
-      <form>
+      <form
+        onSubmit={cotizarSeguro}
+      >
+      { error ? <Error>Todos los campos son Obligatorios</Error> : null}
         <Campo>
           <Label>Marca</Label>
-          <Select>
+          <Select
+            name="marca"
+            value={marca}
+            onChange={obtenerInfo}
+          >
             <option value="">-- Seleccione --</option>
             <option value="americano">Americano</option>
             <option value="europeo">Europeo</option>
@@ -56,7 +105,11 @@ const Formluario = () => {
         </Campo>
         <Campo>
           <Label>Año</Label>
-          <Select>
+          <Select
+            name="year"
+            value={year}
+            onChange={obtenerInfo}
+          >
             <option value="">-- Seleccione --</option>
             <option value="2021">2021</option>
             <option value="2020">2020</option>
@@ -73,12 +126,24 @@ const Formluario = () => {
 
         <Campo>
           <Label>Plan</Label>
-          <InputRadio type="radio" name="plan" value="basico" />
+          <InputRadio 
+            type="radio" 
+            name="plan" 
+            value="basico"
+            checked={plan === "basico"}
+            onChange={obtenerInfo}
+          />
           Básico
-          <InputRadio type="radio" name="plan" value="completo" />
+          <InputRadio 
+            type="radio" 
+            name="plan" 
+            value="completo"
+            checked={plan === "completo"}
+            onChange={obtenerInfo}
+          />
           Completo
         </Campo>
-        <Button type="button">Cotizar</Button>
+        <Button type="submit">Cotizar</Button>
       </form>
     </Fragment>
   );
