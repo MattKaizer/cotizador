@@ -1,5 +1,7 @@
 import React, { Fragment, useState } from "react";
 import styled from "@emotion/styled";
+import { obtenerDiferenciaAños, calcularMarca, obtenerPlan } from '../Helper'
+
 
 //Styled components
 const Campo = styled.div`
@@ -51,7 +53,7 @@ const Error = styled.div`
   margin-bottom: 1rem;
 `;
 
-const Formluario = () => {
+const Formluario = ({setResumen}) => {
 //states
 const [datos, setDatos] = useState({
   marca: '',
@@ -82,6 +84,30 @@ const cotizarSeguro = e => {
      return
   }
   setError(false)
+
+  //Implento una base fija para todos los seguros
+  let baseResultado = 600
+
+  //Diferencia de años
+  const diferencia = obtenerDiferenciaAños(year)
+
+  //Por cada año restar 3%
+  baseResultado -= (( diferencia * 3) * baseResultado ) / 100
+
+  //Incremento por zonas - Americano 15% - Asiatico 5% - Europeo 30%
+  baseResultado = calcularMarca(marca) * baseResultado
+
+  //Basico + 20% - Completo 50%
+  const incrementoPlan = obtenerPlan(plan)
+  baseResultado = parseFloat(incrementoPlan * baseResultado).toFixed(2);
+
+  //total
+  setResumen({
+    cotizacion: baseResultado,
+    datos
+  })
+
+
 }
 
   return (
