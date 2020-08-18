@@ -3,6 +3,8 @@ import Header from './components/Header';
 import Formulario from './components/Formulario';
 import Resumen from './components/Resumen';
 import Resultado from './components/Resultado';
+import Spinner from './components/Spinner';
+
 import styled from '@emotion/styled';
 
 //Styled components
@@ -29,7 +31,8 @@ function App() {
 
   //extraer datos
   const { cotizacion, datos } = resumen;
-  
+  const [spinner, setSpinner] = useState(false);
+
   return (
     <Contenedor>
       <Header 
@@ -38,13 +41,19 @@ function App() {
       <ContenedorFormulario>
         <Formulario 
           setResumen={setResumen}
+          setSpinner={setSpinner}
         />
+      { spinner ? <Spinner /> : null }
       <Resumen 
        datos={datos} 
       />
-      <Resultado
+      {
+        !spinner ?
+        <Resultado
         cotizacion={cotizacion}
       />
+      : null
+      }
       </ContenedorFormulario>
     </Contenedor>
 
