@@ -1,5 +1,7 @@
 import React from 'react';
 import { letraCapital } from '../Helper'
+import PropTypes from "prop-types";
+
 import styled from "@emotion/styled";
 
 
@@ -30,5 +32,9 @@ const Resumen = ({datos}) => {
         </ContenedorResumen>
      );
 }
- 
+
+Resumen.propTypes = {
+    datos: PropTypes.object.isRequired
+}
+
 export default Resumen;

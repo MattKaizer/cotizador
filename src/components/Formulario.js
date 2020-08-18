@@ -1,5 +1,6 @@
 import React, { Fragment, useState } from "react";
 import { obtenerDiferenciaAños, calcularMarca, obtenerPlan } from "../Helper";
+import PropTypes from "prop-types";
 
 import styled from "@emotion/styled";
 
@@ -170,5 +171,10 @@ const Formluario = ({ setResumen, setSpinner }) => {
     </Fragment>
   );
 };
+
+Formluario.propTypes = {
+  setResumen: PropTypes.func.isRequired,
+  setSpinner: PropTypes.func.isRequired 
+}
 
 export default Formluario;

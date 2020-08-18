@@ -1,4 +1,6 @@
 import React from 'react';
+import PropTypes from "prop-types";
+
 
 import '../Spinner.css'
 import styled from "@emotion/styled";
@@ -47,6 +49,10 @@ const Resultado = ({cotizacion}) => {
                 </TransitionGroup>
             </ResultadoCotizacion>)
      );
+}
+
+Resultado.propTypes = {
+    cotizacion: PropTypes.number.isRequired
 }
  
 export default Resultado;
