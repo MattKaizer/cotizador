@@ -1,11 +1,11 @@
 # App cotizador de seguros
-[link-netlify-preview](https://gracious-jennings-14385b.netlify.app)
+[link-netlify-preview](https://cocky-boyd-0af365.netlify.app)
 
 ### Simple React App
 
 ## Task Description
 
-Simple app build with reactJS, working with hooks. Th
+Simple app build with reactJS, working with hooks, style components, react-transitions. The idea is to implement styled components and transitions.
 
 #### Enum Tech used
 
@@ -13,8 +13,8 @@ Simple app build with reactJS, working with hooks. Th
 * CSS3
 * JS
 * ReacJS
-* Bulma
 * ShortId
+
 
 <hr>
 
